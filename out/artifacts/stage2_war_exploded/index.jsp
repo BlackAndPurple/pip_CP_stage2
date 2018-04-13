@@ -8,9 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>CRUD api</title>
   </head>
   <body>
-  $END$
+  <h2>People</h2>
+  <ul>
+    <li><a href="get_data/people">Get all</a> </li>
+    <li><a href="delete_form/people">Delete by id</a> </li>
+  </ul>
   </body>
 </html>

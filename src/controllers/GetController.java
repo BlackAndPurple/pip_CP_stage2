@@ -5,6 +5,7 @@ import beans.SessionPeopleBean;
 import models.People;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 //import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,21 +15,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-public class GetController extends HttpServlet {
+public class GetController extends HttpServlet implements Respondent{
 
     @EJB
     private IPeopleBean peopleBean;
 
-    private void responseBlank(HttpServletResponse resp, String content) throws IOException {
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.println("<html>" + "<head><title>result</title>" +
-                "</head><body >");
-        out.println("<a href=\"../\">Back</a><br>");
-        out.println(content);
-        out.println("</body></html>");
-        out.close();
-    }
+//    private void responseBlank(HttpServletResponse resp, String content) throws IOException {
+//        resp.setContentType("text/html");
+//        PrintWriter out = resp.getWriter();
+//        out.println("<html>" + "<head><title>result</title>" +
+//                "</head><body >");
+//        out.println("<a href=\"../\">Back</a><br>");
+//        out.println(content);
+//        out.println("</body></html>");
+//        out.close();
+//    }
 
     private String makeContentFromList(List ResultList){
         String retString = "";
@@ -41,7 +42,20 @@ public class GetController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         // Получаем список пользователей
-        List<People> ResultList = peopleBean.getAll();
+        List<People> ResultList = /*peopleBean.getAll();*/ null;
+
+
+        //List ResultList = null;
+        switch (req.getPathInfo()) {
+            case "/":
+                RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+                rd.forward(req, resp);
+                break;
+            case "/people":
+                ResultList = peopleBean.getAll();
+                responseBlank(resp, makeContentFromList(ResultList));
+                break;
+        }
 
         responseBlank(resp, makeContentFromList(ResultList));
 

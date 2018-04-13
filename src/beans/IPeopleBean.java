@@ -16,10 +16,10 @@ public interface IPeopleBean {
 
     public void update(People person);
 
-    public void delete(long id);
+    public boolean delete(long id);
 
     public List<People> getAll();
 
-    public void addPerson(String name, String middleName, String surname, boolean sex, Date dateOfBirth);
+    public void add(String name, String middleName, String surname, boolean sex, Date dateOfBirth);
 
 }

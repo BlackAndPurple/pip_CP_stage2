@@ -15,6 +15,26 @@
         <!--url-pattern>/people</url-pattern-->
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>delete controller</servlet-name>
+        <servlet-class>controllers.DeleteController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>delete controller</servlet-name>
+        <url-pattern>/delete_data/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delete form</servlet-name>
+        <jsp-file>/delete_form.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>delete form</servlet-name>
+        <url-pattern>/delete_form/*</url-pattern>
+    </servlet-mapping>
+
     <ejb-local-ref>
         <ejb-ref-name>peopleBean</ejb-ref-name>
         <local>beans.IPeopleBean</local>

@@ -39,8 +39,12 @@ public class SessionPeopleBean implements IPeopleBean{
     }
 
     // delete person by id
-    public void delete(long id){
-        em.remove(get(id));
+    public boolean delete(long id){
+        if (get(id) != null){
+            em.remove(get(id));
+            return true;
+        }else return false;
+
     }
 
     //get all people
@@ -50,7 +54,7 @@ public class SessionPeopleBean implements IPeopleBean{
         return query.getResultList();
     }
 
-    public void addPerson(String name, String middleName, String surname, boolean sex, Date dateOfBirth) {
+    public void add(String name, String middleName, String surname, boolean sex, Date dateOfBirth) {
         EntityManager em = emf.createEntityManager();
         People person = new People();
         person.setName(name);
@@ -61,4 +65,6 @@ public class SessionPeopleBean implements IPeopleBean{
         em.persist(person);
         em.close();
     }
+
+
 }
