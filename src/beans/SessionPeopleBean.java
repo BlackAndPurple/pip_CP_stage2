@@ -17,6 +17,7 @@ public class SessionPeopleBean implements IPeopleBean{
 //    @PersistenceContext(unitName = "PU")
 //    private EntityManager em;
 
+
     @PersistenceUnit
     public EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
     private EntityManager em = emf.createEntityManager();
@@ -28,7 +29,12 @@ public class SessionPeopleBean implements IPeopleBean{
 
     // get person by id
     public People get(long id){
-        return em.find(People.class, id);
+        try {
+            return (People)em.createQuery("select people from People people where people.person_id="+id).getSingleResult();
+        }catch (Exception e){
+            return null;
+        }
+
     }
 
     // update person
@@ -40,8 +46,13 @@ public class SessionPeopleBean implements IPeopleBean{
 
     // delete person by id
     public boolean delete(long id){
-        if (get(id) != null){
-            em.remove(get(id));
+
+        People person = get(id);
+        if (person != null){
+            EntityManager em = emf.createEntityManager();
+            Query query = em.createQuery("delete from People people where people.person_id="+id);
+            query.executeUpdate();
+            em.close();
             return true;
         }else return false;
 
@@ -49,7 +60,6 @@ public class SessionPeopleBean implements IPeopleBean{
 
     //get all people
     public List<People> getAll(){
-        //TypedQuery<People> namedQuery = em.createNamedQuery("People.getAll", People.class);
         Query query = em.createQuery("Select people from People people");
         return query.getResultList();
     }
