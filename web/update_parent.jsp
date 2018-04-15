@@ -8,9 +8,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>CRUD api</title>
 </head>
 <body>
-
+    <form method="post" action="update_data/parent">
+        <h3>Updating a person </h3>
+        <p>
+            <label>parent ID: </label>
+            <input placeholder="not null" name="parent_id" required>
+        </p>
+        <p>
+            <label>person ID: </label>
+            <input placeholder="" name="person_id" required>
+        </p>
+        <button type="submit">Add</button>
+    </form>
 </body>
 </html>

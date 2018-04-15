@@ -85,6 +85,16 @@
         <url-pattern>/update_person</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>update parent</servlet-name>
+        <jsp-file>/update_parent.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update parent</servlet-name>
+        <url-pattern>/update_parent</url-pattern>
+    </servlet-mapping>
+
     <ejb-local-ref>
         <ejb-ref-name>peopleBean</ejb-ref-name>
         <local>beans.IPeopleBean</local>

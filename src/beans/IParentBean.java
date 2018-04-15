@@ -11,4 +11,5 @@ public interface IParentBean {
     public boolean add(long personId);
     public boolean delete(long id);
     public Parent get(long id);
+    public boolean update(long parent_id, long person_id);
 }

@@ -86,4 +86,20 @@ public class SessionParentBean implements IParentBean{
             return null;
         }
     }
+
+    /**
+     * Allows to update data of parent with given id.
+     * @param parent_id     Record's identifier.
+     * @param person_id     New person's id.
+     * @return              True if update was successful. Otherwise false.
+     */
+    public boolean update(long parent_id, long person_id){
+        Parent parent = get(parent_id);
+        if (parent != null) {
+            parent.setPerson(peopleBean.get(person_id));
+            return true;
+        }
+        return false;
+
+    }
 }
