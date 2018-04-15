@@ -1,7 +1,9 @@
 package controllers;
 
+import beans.IParentBean;
 import beans.IPeopleBean;
 import beans.SessionPeopleBean;
+import models.Parent;
 import models.People;
 
 import javax.ejb.EJB;
@@ -20,16 +22,9 @@ public class GetController extends HttpServlet implements Respondent{
     @EJB
     private IPeopleBean peopleBean;
 
-//    private void responseBlank(HttpServletResponse resp, String content) throws IOException {
-//        resp.setContentType("text/html");
-//        PrintWriter out = resp.getWriter();
-//        out.println("<html>" + "<head><title>result</title>" +
-//                "</head><body >");
-//        out.println("<a href=\"../\">Back</a><br>");
-//        out.println(content);
-//        out.println("</body></html>");
-//        out.close();
-//    }
+    @EJB
+    private IParentBean parentBean;
+
 
     private String makeContentFromList(List ResultList){
         String retString = "";
@@ -41,11 +36,9 @@ public class GetController extends HttpServlet implements Respondent{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        // Получаем список пользователей
-        List<People> ResultList = /*peopleBean.getAll();*/ null;
 
+        List<?> ResultList = null;
 
-        //List ResultList = null;
         switch (req.getPathInfo()) {
             case "/":
                 RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
@@ -53,6 +46,10 @@ public class GetController extends HttpServlet implements Respondent{
                 break;
             case "/people":
                 ResultList = peopleBean.getAll();
+                responseBlank(resp, makeContentFromList(ResultList));
+                break;
+            case "/parent":
+                ResultList = parentBean.getAll();
                 responseBlank(resp, makeContentFromList(ResultList));
                 break;
         }

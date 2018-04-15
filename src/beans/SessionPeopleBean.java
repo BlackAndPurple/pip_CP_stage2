@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Bean implementing CRUD api for People model.
+ * Bean implementing CRUD api for {@link models.People model}.
  */
 @Stateless(name = "SessionPeopleBeanEJB")
 public class SessionPeopleBean implements IPeopleBean{

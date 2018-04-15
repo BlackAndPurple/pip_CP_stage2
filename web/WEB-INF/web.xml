@@ -80,4 +80,9 @@
         <local>beans.IPeopleBean</local>
     </ejb-local-ref>
 
+    <ejb-local-ref>
+        <ejb-ref-name>parentBean</ejb-ref-name>
+        <local>beans.IParentBean</local>
+    </ejb-local-ref>
+
 </web-app>
