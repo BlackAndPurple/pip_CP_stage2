@@ -2,13 +2,14 @@ package beans;
 
 import models.People;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * Bean implementing CRUD api for People model.
+ */
 @Stateless(name = "SessionPeopleBeanEJB")
 public class SessionPeopleBean implements IPeopleBean{
     public SessionPeopleBean() {
@@ -16,31 +17,33 @@ public class SessionPeopleBean implements IPeopleBean{
 
     @PersistenceUnit(unitName = "PU")
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
-    //private EntityManager em = emf.createEntityManager();
 
-    // add person to db
-//    public People add(People person){
-//        EntityManager em = emf.createEntityManager();
-//        return em.merge(person);
-//        //need to close em
-//    }
-
-    // get person by id
+    /**
+     * Allows to get person by id.
+     * @param id  the identifier of person we are looking for.
+     * @return    Person with given id if found.
+     */
     public People get(long id){
         EntityManager em = emf.createEntityManager();
         try {
             return (People)em.createQuery("select people from People people where people.person_id="+id).getSingleResult();
         }catch (Exception e){
+            em.close();
             return null;
         }
-        //need to close em
     }
 
-    // update person
-    // if there's no such person,
-    // we add it as the new one
+    /**
+     * Allows to update data of person with given id.
+     * @param id            Record's identifier.
+     * @param name          New name.
+     * @param middleName    New middle name.
+     * @param surname       New surname.
+     * @param sex           New sex.
+     * @param dateOfBirth   New date of Birth.
+     * @return              True if update was successful. Otherwise false.
+     */
     public boolean update(long id, String name, String middleName, String surname, boolean sex, Date dateOfBirth){
-       // add(person);
         People person = get(id);
         if (person != null) {
 
@@ -49,16 +52,17 @@ public class SessionPeopleBean implements IPeopleBean{
             person.setSurname(surname);
             person.setSex(sex);
             person.setDate_of_birth(dateOfBirth);
-            // em.persist(person);
             return true;
         }
         return false;
 
     }
 
-
-
-    // delete person by id
+    /**
+     * Allows to delete person with given id.
+     * @param id    person's identifier.
+     * @return      True if delete operation was successful. Otherwise false.
+     */
     public boolean delete(long id){
 
         People person = get(id);
@@ -72,7 +76,10 @@ public class SessionPeopleBean implements IPeopleBean{
 
     }
 
-    //get all people
+    /**
+     * Allows to get list of all the records in database.
+     * @return List of people.
+     */
     public List<People> getAll(){
         EntityManager em = emf.createEntityManager();
         Query query = em.createQuery("Select people from People people");
@@ -81,8 +88,14 @@ public class SessionPeopleBean implements IPeopleBean{
         return people;
     }
 
-
-    //add new person
+    /**
+     * Allows to add new person to database.
+     * @param name          New person's name.
+     * @param middleName    New person's middle name.
+     * @param surname       New person's surname.
+     * @param sex           New person's sex.
+     * @param dateOfBirth   New person's date of Birth.
+     */
     public void add(String name, String middleName, String surname, boolean sex, Date dateOfBirth) {
         EntityManager em = emf.createEntityManager();
         People person = new People();
@@ -95,6 +108,4 @@ public class SessionPeopleBean implements IPeopleBean{
         em.persist(person);
         em.close();
     }
-
-
 }
