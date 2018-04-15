@@ -105,4 +105,9 @@
         <local>beans.IParentBean</local>
     </ejb-local-ref>
 
+    <ejb-local-ref>
+        <ejb-ref-name>contactsBean</ejb-ref-name>
+        <local>beans.IContactsBean</local>
+    </ejb-local-ref>
+
 </web-app>
