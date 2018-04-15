@@ -8,4 +8,7 @@ import java.util.List;
 public interface IParentBean {
 
     public List<Parent> getAll();
+    public boolean add(long personId);
+    public boolean delete(long id);
+    public Parent get(long id);
 }

@@ -18,5 +18,12 @@
     <li><a href="delete_form/people">Delete by id</a> </li>
     <li><a href="update_person">Update</a> </li>
   </ul>
+  <h2>Parent</h2>
+  <ul>
+      <li><a href="get_data/parent">Get all</a> </li>
+      <li><a href="add_parent">Add new</a> </li>
+      <li><a href="delete_form/parent">Delete by id</a> </li>
+      <li><a href="update_parent">Update</a> </li>
+  </ul>
   </body>
 </html>

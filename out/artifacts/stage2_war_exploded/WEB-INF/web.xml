@@ -66,6 +66,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>add parent</servlet-name>
+        <jsp-file>/add_parent.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add parent</servlet-name>
+        <url-pattern>/add_parent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>update person</servlet-name>
         <jsp-file>/update_person.jsp</jsp-file>
     </servlet>
@@ -78,6 +88,11 @@
     <ejb-local-ref>
         <ejb-ref-name>peopleBean</ejb-ref-name>
         <local>beans.IPeopleBean</local>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>parentBean</ejb-ref-name>
+        <local>beans.IParentBean</local>
     </ejb-local-ref>
 
 </web-app>

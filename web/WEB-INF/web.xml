@@ -66,6 +66,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>add parent</servlet-name>
+        <jsp-file>/add_parent.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add parent</servlet-name>
+        <url-pattern>/add_parent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>update person</servlet-name>
         <jsp-file>/update_person.jsp</jsp-file>
     </servlet>

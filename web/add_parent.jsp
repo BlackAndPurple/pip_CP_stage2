@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: tatja
-  Date: 13.04.2018
-  Time: 22:07
+  Date: 15.04.2018
+  Time: 23:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,14 +11,13 @@
     <title>CRUD api</title>
 </head>
 <body>
-<% String action = "../delete_data" + request.getPathInfo();%>
-    <form method="post" action=<%=action%>>
-        <h3>Enter Id of record you want to delete </h3>
+    <form method="post" action="post_data/parent">
+        <h3>Adding a new parent </h3>
         <p>
-            <label>ID: </label>
+            <label>Person id: </label>
             <input placeholder="not null" name="id" required>
         </p>
-        <button type="submit">Delete</button>
+        <button type="submit">Add</button>
     </form>
 </body>
 </html>

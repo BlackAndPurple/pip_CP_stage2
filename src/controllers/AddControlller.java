@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.IParentBean;
 import beans.IPeopleBean;
 import models.People;
 
@@ -23,6 +24,9 @@ public class AddControlller extends HttpServlet implements Respondent{
     @EJB
     private IPeopleBean peopleBean;
 
+    @EJB
+    private IParentBean parentBean;
+
 //    @PersistenceUnit
 //    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
 
@@ -30,30 +34,33 @@ public class AddControlller extends HttpServlet implements Respondent{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getRequestURI().substring(req.getContextPath().length());
         String[] pathArr = path.split("/");
+        String id = null;
         try {
-            String id = req.getParameter("id");
-            String name = req.getParameter("name");
-            String middleName = req.getParameter("middle_name");
-            String surname = req.getParameter("surname");
-            String sex = req.getParameter("sex");
-            String dateOfBirth = req.getParameter("date_of_birth");
-            Date date = null;
-            if ((dateOfBirth != null) && !dateOfBirth.equals("")) {
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-                try {
-                    date = format.parse(dateOfBirth);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            //responseBlank(resp, name + " " + middleName + " " + surname + " " + sex + " " + dateOfBirth);
-            //peopleBean.add(name, middleName, surname, Boolean.parseBoolean(sex), date);
             switch (pathArr[2]) {
                 case "person":
+                    id = req.getParameter("id");
+                    String name = req.getParameter("name");
+                    String middleName = req.getParameter("middle_name");
+                    String surname = req.getParameter("surname");
+                    String sex = req.getParameter("sex");
+                    String dateOfBirth = req.getParameter("date_of_birth");
+                    Date date = null;
+                    if ((dateOfBirth != null) && !dateOfBirth.equals("")) {
+                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                        try {
+                            date = format.parse(dateOfBirth);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     peopleBean.add(name, middleName, surname, Boolean.parseBoolean(sex), date);
                     break;
+                case "parent":
+                    id = req.getParameter("id");
+                    parentBean.add(Long.parseLong(id));
+                    break;
             }
+
         }catch (Exception e){
             responseBlank(resp, "Unable to add record");
         }

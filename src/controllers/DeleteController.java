@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.IParentBean;
 import beans.IPeopleBean;
 
 import javax.ejb.EJB;
@@ -15,16 +16,9 @@ public class DeleteController extends HttpServlet implements Respondent{
     @EJB
     private IPeopleBean peopleBean;
 
-//    private void responseBlank(HttpServletResponse resp, String content) throws IOException {
-//        resp.setContentType("text/html");
-//        PrintWriter out = resp.getWriter();
-//        out.println("<html>" + "<head><title>result</title>" +
-//                "</head><body >");
-//        out.println("<a href=\"../\">Back</a><br>");
-//        out.println(content);
-//        out.println("</body></html>");
-//        out.close();
-//    }
+    @EJB
+    private IParentBean parentBean;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +29,9 @@ public class DeleteController extends HttpServlet implements Respondent{
         switch (pathArr[2]) {
             case "people":
                 success = peopleBean.delete(Long.parseLong(id));
+                break;
+            case "parent":
+                success = parentBean.delete(Long.parseLong(id));
                 break;
         }
 

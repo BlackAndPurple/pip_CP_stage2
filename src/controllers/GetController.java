@@ -31,6 +31,7 @@ public class GetController extends HttpServlet implements Respondent{
         for (Object o : ResultList)
             retString += (o + "<br>");
         return retString;
+        //need to change to StringBuilder
     }
 
     @Override
@@ -56,12 +57,6 @@ public class GetController extends HttpServlet implements Respondent{
 
         responseBlank(resp, makeContentFromList(ResultList));
 
-        // добавляем полученный список в request,
-        // который отправится на jsp
-        //req.setAttribute("users", allUser);
-
-        // отправляем request на jsp
-        //req.getRequestDispatcher("/list.jsp").forward(req, resp);
 
     }
 }

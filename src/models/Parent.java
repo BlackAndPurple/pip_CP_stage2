@@ -41,9 +41,10 @@ public class Parent {
 
     @Override
     public String toString() {
-        return "parent_id: "+parent_id + " | person_id: " + person.getPerson_id() +
-                " | "+person.getName()+" | "+person.getMiddleName()+" | "+
-                person.getSurname()+" | "+person.isSex();
+        return "parent_id: "+parent_id + " | person_id: " + person.getPerson_id();
+//        return "parent_id: "+parent_id + " | person_id: " + person.getPerson_id() +
+//                " | "+person.getName()+" | "+person.getMiddleName()+" | "+
+//                person.getSurname()+" | "+person.isSex();
     }
 
     public long getParent_id() {
