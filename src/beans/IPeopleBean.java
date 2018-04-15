@@ -10,7 +10,7 @@ import java.util.List;
 @Local(SessionPeopleBean.class)
 public interface IPeopleBean {
 
-    public People add(People person);
+   // public People add(People person);
 
     public People get(long id);
 

@@ -10,9 +10,13 @@ import java.util.Date;
 @Table(name = "PEOPLE", schema = "s225128")
 public class People implements Serializable{
 
+//    @Id
+//    @Column(name = "person_id")
+//    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     @Id
     @Column(name = "person_id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "IdSeq")
+    @SequenceGenerator(name="IdSeq",sequenceName="people_ids", allocationSize=1)
     private long person_id;
 
     @Column(columnDefinition = "VARCHAR(30)")

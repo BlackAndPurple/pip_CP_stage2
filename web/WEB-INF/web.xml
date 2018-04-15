@@ -26,6 +26,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>add controller</servlet-name>
+        <servlet-class>controllers.AddControlller</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add controller</servlet-name>
+        <url-pattern>/post_data/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>delete form</servlet-name>
         <jsp-file>/delete_form.jsp</jsp-file>
     </servlet>
@@ -33,6 +43,16 @@
     <servlet-mapping>
         <servlet-name>delete form</servlet-name>
         <url-pattern>/delete_form/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add person</servlet-name>
+        <jsp-file>/add_person.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add person</servlet-name>
+        <url-pattern>/add_person</url-pattern>
     </servlet-mapping>
 
     <ejb-local-ref>
