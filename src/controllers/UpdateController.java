@@ -1,13 +1,8 @@
 package controllers;
 
 import beans.IPeopleBean;
-import models.People;
 
 import javax.ejb.EJB;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +13,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AddControlller extends HttpServlet implements Respondent{
+public class UpdateController extends HttpServlet implements Respondent{
 
     @EJB
     private IPeopleBean peopleBean;
-
-//    @PersistenceUnit
-//    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,16 +41,19 @@ public class AddControlller extends HttpServlet implements Respondent{
 
             //responseBlank(resp, name + " " + middleName + " " + surname + " " + sex + " " + dateOfBirth);
             //peopleBean.add(name, middleName, surname, Boolean.parseBoolean(sex), date);
+            boolean success = false;
             switch (pathArr[2]) {
                 case "person":
-                    peopleBean.add(name, middleName, surname, Boolean.parseBoolean(sex), date);
+                    success = peopleBean.update(Long.parseLong(id), name, middleName, surname, Boolean.parseBoolean(sex), date);
                     break;
             }
+            if (!success)
+                throw new Exception();
         }catch (Exception e){
-            responseBlank(resp, "Unable to add record");
+            responseBlank(resp, "Unable to update record");
         }
 
-        responseBlank(resp, "Record has been added!");
+        responseBlank(resp, "Record has been updated!");
 
     }
 }

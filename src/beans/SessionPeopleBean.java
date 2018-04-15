@@ -14,12 +14,6 @@ public class SessionPeopleBean implements IPeopleBean{
     public SessionPeopleBean() {
     }
 
-//    @PersistenceContext(unitName = "PU")
-//    private EntityManager em;
-
-//    @PersistenceContext(unitName = "PU", type = PersistenceContextType.EXTENDED)
-//    private EntityManager entityManager;
-
     @PersistenceUnit(unitName = "PU")
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
     //private EntityManager em = emf.createEntityManager();
@@ -45,9 +39,24 @@ public class SessionPeopleBean implements IPeopleBean{
     // update person
     // if there's no such person,
     // we add it as the new one
-    public void update(People person){
+    public boolean update(long id, String name, String middleName, String surname, boolean sex, Date dateOfBirth){
        // add(person);
+        People person = get(id);
+        if (person != null) {
+
+            person.setName(name);
+            person.setMiddleName(middleName);
+            person.setSurname(surname);
+            person.setSex(sex);
+            person.setDate_of_birth(dateOfBirth);
+            // em.persist(person);
+            return true;
+        }
+        return false;
+
     }
+
+
 
     // delete person by id
     public boolean delete(long id){

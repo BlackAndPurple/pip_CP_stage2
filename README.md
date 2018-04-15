@@ -1,6 +1,6 @@
 # pip_CP_stage2
-<b>Couse project on Web apps development.</b><br> 3rd semester. ITMO University
-<br> <i>TASK:</i>
+<b>Course project on Web apps development.</b><br> 3rd semester. ITMO University
+<br><br> <i>TASK:</i>
 <br>  Уровень доступа к данным
 На втором этапе необходимо реализовать уровень DataAccess разрабатываемой системы. Уровень DataAccess должен содержать CRUD API ко всем сущностям базы данных, а также ряд дополнительных функций, номенклатура которых определяется конкретной предметной областью, согласуется с преподавателем и фиксируется в техническом задании.
 

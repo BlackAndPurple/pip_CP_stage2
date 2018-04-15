@@ -14,7 +14,7 @@ public interface IPeopleBean {
 
     public People get(long id);
 
-    public void update(People person);
+    public boolean update(long id, String name, String middleName, String surname, boolean sex, Date dateOfBirth);
 
     public boolean delete(long id);
 

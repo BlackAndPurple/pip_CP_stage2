@@ -16,6 +16,7 @@
     <li><a href="get_data/people">Get all</a> </li>
     <li><a href="add_person">Add new</a> </li>
     <li><a href="delete_form/people">Delete by id</a> </li>
+    <li><a href="update_person">Update</a> </li>
   </ul>
   </body>
 </html>
