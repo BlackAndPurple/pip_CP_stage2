@@ -25,12 +25,19 @@
       <li><a href="delete_form/parent">Delete by id</a> </li>
       <li><a href="update_parent">Update</a> </li>
   </ul>
-  <h2>Parents' contacts</h2>
+  <h2>Parent contacts</h2>
   <ul>
       <li><a href="get_data/contacts">Get all</a> </li>
       <li><a href="add_contacts">Add new</a> </li>
       <li><a href="delete_form/contacts">Delete by id</a> </li>
       <li><a href="update_contacts">Update</a> </li>
+  </ul>
+  <h2>Kid</h2>
+  <ul>
+      <li><a href="get_data/kid">Get all</a> </li>
+      <li><a href="add_kid">Add new</a> </li>
+      <li><a href="delete_form/kid">Delete by id</a> </li>
+      <li><a href="update_kid">Update</a> </li>
   </ul>
   </body>
 </html>

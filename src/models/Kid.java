@@ -1,6 +1,8 @@
 package models;
 
 
+import com.sun.istack.internal.Nullable;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -10,9 +12,10 @@ public class Kid {
 
     @Id
     @Column(name = "kid_id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "IdS")
-    @SequenceGenerator(name="IdS",sequenceName="s225128.kid_ids", allocationSize=1)
-    private int kid_id;
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "kid_generator")
+//    @SequenceGenerator(name="kid_generator",sequenceName="s225128.kid_ids", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long kid_id;
 
     @OneToOne
     @PrimaryKeyJoinColumn(name = "person_id", referencedColumnName = "person_id")
@@ -22,11 +25,12 @@ public class Kid {
     private long person_id;
 
     @Column(name="parent1_id")
-    private long parent1_id;
+    private Long parent1_id;
 
 
     @Column(name="parent2_id")
-    private long parent2_id;
+    @Nullable
+    private Long parent2_id;
 
     @ManyToOne
     @JoinColumn(name="PARENT1_ID",/*, referencedColumnName = "parent_id",*/ insertable = false, updatable = false)
@@ -34,8 +38,9 @@ public class Kid {
 
 
     @ManyToOne
-    @JoinColumn(name="PARENT2_ID", /*referencedColumnName = "parent_id", */insertable = false, updatable = false)
-    private Parent parent2;
+    @JoinColumn(name="PARENT2_ID", /*referencedColumnName = "parent_id", */insertable = false, updatable = false, nullable = true)
+    @Nullable
+    private Parent parent2 = null;
 
 
     @OneToMany(targetEntity = MedInfo.class, mappedBy = "kid")
@@ -63,11 +68,10 @@ public class Kid {
 
     @Override
     public String toString() {
-        return kid_id + " | " + person.getPerson_id()+ " | " + person.getName() + " | " + person.getMiddleName() + " | " + person.getSurname() +
-                " | Parents' IDs: " + parent1.getParent_id()+", "+ parent2.getParent_id();
+        return "ID: " + kid_id + " | person_id: " + person_id +  " | Parents' IDs: " + parent1_id+", "+ parent2_id;
     }
 
-    public int getKid_id() {
+    public long getKid_id() {
         return kid_id;
     }
 
@@ -99,10 +103,10 @@ public class Kid {
     }
 
     public void setParent2(Parent parent2) {
-
+        this.parent2 = parent2;
         if(parent2 != null)
         {
-            this.parent2 = parent2;
+            //this.parent2 = parent2;
             parent2_id = parent2.getParent_id();
         }
 

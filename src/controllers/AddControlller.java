@@ -1,6 +1,7 @@
 package controllers;
 
 import beans.IContactsBean;
+import beans.IKidBean;
 import beans.IParentBean;
 import beans.IPeopleBean;
 import models.People;
@@ -30,6 +31,9 @@ public class AddControlller extends HttpServlet implements Respondent{
 
     @EJB
     private IContactsBean contactsBean;
+
+    @EJB
+    private IKidBean kidBean;
 
 
 //    @PersistenceUnit
@@ -71,6 +75,15 @@ public class AddControlller extends HttpServlet implements Respondent{
                     String jobPhoneNumber = req.getParameter("job_phone_number");
                     String cellPhoneNumber = req.getParameter("cell_phone_number");
                     contactsBean.add(Long.parseLong(id), homeAddress, job, jobPhoneNumber, cellPhoneNumber);
+                    break;
+                case "kid":
+                    id = req.getParameter("person_id");
+                    String parent1_id = req.getParameter("parent1_id");
+                    String parent2_id = req.getParameter("parent2_id");
+                    if (parent2_id.equals(""))
+                        kidBean.add(Long.parseLong(id), Long.parseLong(parent1_id), -1);
+                    else
+                        kidBean.add(Long.parseLong(id), Long.parseLong(parent1_id), Long.parseLong(parent2_id));
                     break;
             }
 

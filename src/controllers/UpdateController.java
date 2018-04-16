@@ -1,6 +1,7 @@
 package controllers;
 
 import beans.IContactsBean;
+import beans.IKidBean;
 import beans.IParentBean;
 import beans.IPeopleBean;
 
@@ -25,6 +26,10 @@ public class UpdateController extends HttpServlet implements Respondent{
 
     @EJB
     private IContactsBean contactsBean;
+
+    @EJB
+    private IKidBean kidBean;
+
 
 
     @Override
@@ -71,6 +76,13 @@ public class UpdateController extends HttpServlet implements Respondent{
                     String jobPhoneNumber = req.getParameter("job_phone_number");
                     String cellPhoneNumber = req.getParameter("cell_phone_number");
                     success = contactsBean.update(Long.parseLong(contactsId), Long.parseLong(parentId), address, job, jobPhoneNumber, cellPhoneNumber);
+                    break;
+                case "kid":
+                    String kidId = req.getParameter("kid_id");
+                    personId = req.getParameter("person_id");
+                    String parent1Id = req.getParameter("parent1_id");
+                    String parent2Id = req.getParameter("parent2_id");
+                    success = kidBean.update(Long.parseLong(kidId), Long.parseLong(personId), Long.parseLong(parent1Id), Long.parseLong(parent2Id));
                     break;
             }
             if (!success)

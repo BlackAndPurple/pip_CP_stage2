@@ -1,9 +1,6 @@
 package controllers;
 
-import beans.IContactsBean;
-import beans.IParentBean;
-import beans.IPeopleBean;
-import beans.SessionPeopleBean;
+import beans.*;
 import models.Parent;
 import models.People;
 
@@ -29,6 +26,9 @@ public class GetController extends HttpServlet implements Respondent{
     @EJB
     private IContactsBean contactsBean;
 
+    @EJB
+    private IKidBean kidBean;
+
 
     private String makeContentFromList(List ResultList){
         String retString = "";
@@ -51,15 +51,15 @@ public class GetController extends HttpServlet implements Respondent{
                 break;
             case "/people":
                 ResultList = peopleBean.getAll();
-                //responseBlank(resp, makeContentFromList(ResultList));
                 break;
             case "/parent":
                 ResultList = parentBean.getAll();
-                //responseBlank(resp, makeContentFromList(ResultList));
                 break;
             case "/contacts":
                 ResultList = contactsBean.getAll();
-                //responseBlank(resp, makeContentFromList(ResultList));
+                break;
+            case "/kid":
+                ResultList = kidBean.getAll();
                 break;
         }
 

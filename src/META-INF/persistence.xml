@@ -22,10 +22,9 @@
             <property name="javax.persistence.jdbc.user"  value="postgres" />
             <property name="javax.persistence.jdbc.password" value="2548" />
 
-
-            <!--property name="eclipselink.allow-zero-id" value="true"/>
+            <property name="eclipselink.allow-zero-id" value="true"/>
             <property name="eclipselink.id-validation" value="NULL" />
-            <property name="eclipselink.logging.level" value="FINEST" /-->
+            <property name="eclipselink.logging.level" value="FINEST" />
 
             <!--property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>

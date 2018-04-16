@@ -86,6 +86,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>add kid</servlet-name>
+        <jsp-file>/add_kid.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add kid</servlet-name>
+        <url-pattern>/add_kid</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>update person</servlet-name>
         <jsp-file>/update_person.jsp</jsp-file>
     </servlet>
@@ -93,6 +103,16 @@
     <servlet-mapping>
         <servlet-name>update person</servlet-name>
         <url-pattern>/update_person</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>update kid</servlet-name>
+        <jsp-file>/update_kid.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update kid</servlet-name>
+        <url-pattern>/update_kid</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -128,6 +148,11 @@
     <ejb-local-ref>
         <ejb-ref-name>contactsBean</ejb-ref-name>
         <local>beans.IContactsBean</local>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>kidBean</ejb-ref-name>
+        <local>beans.IKidBean</local>
     </ejb-local-ref>
 
 </web-app>
