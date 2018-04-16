@@ -9,4 +9,5 @@ import java.util.List;
 public interface IContactsBean {
 
     public List<ParentContacts> getAll();
+    public boolean add(long parentId, String homeAddress, String job, String jobPhoneNumber, String cellPhoneNumber);
 }

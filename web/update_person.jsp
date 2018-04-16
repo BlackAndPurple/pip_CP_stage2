@@ -38,7 +38,7 @@
             <label>Date of birth: </label>
             <input placeholder="01.01.2020" name="date_of_birth">
         </p>
-        <button type="submit">Add</button>
+        <button type="submit">Update</button>
     </form>
 </body>
 </html>

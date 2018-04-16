@@ -76,6 +76,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>add contacts</servlet-name>
+        <jsp-file>/add_contacts.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add contacts</servlet-name>
+        <url-pattern>/add_contacts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>update person</servlet-name>
         <jsp-file>/update_person.jsp</jsp-file>
     </servlet>

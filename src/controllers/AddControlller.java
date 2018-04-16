@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.IContactsBean;
 import beans.IParentBean;
 import beans.IPeopleBean;
 import models.People;
@@ -26,6 +27,10 @@ public class AddControlller extends HttpServlet implements Respondent{
 
     @EJB
     private IParentBean parentBean;
+
+    @EJB
+    private IContactsBean contactsBean;
+
 
 //    @PersistenceUnit
 //    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
@@ -58,6 +63,14 @@ public class AddControlller extends HttpServlet implements Respondent{
                 case "parent":
                     id = req.getParameter("id");
                     parentBean.add(Long.parseLong(id));
+                    break;
+                case "contacts":
+                    id = req.getParameter("parent_id");
+                    String homeAddress = req.getParameter("address");
+                    String job = req.getParameter("job");
+                    String jobPhoneNumber = req.getParameter("job_phone_number");
+                    String cellPhoneNumber = req.getParameter("cell_phone_number");
+                    contactsBean.add(Long.parseLong(id), homeAddress, job, jobPhoneNumber, cellPhoneNumber);
                     break;
             }
 

@@ -12,7 +12,7 @@
 </head>
 <body>
     <form method="post" action="update_data/parent">
-        <h3>Updating a person </h3>
+        <h3>Updating a parent </h3>
         <p>
             <label>parent ID: </label>
             <input placeholder="not null" name="parent_id" required>
@@ -21,7 +21,7 @@
             <label>person ID: </label>
             <input placeholder="" name="person_id" required>
         </p>
-        <button type="submit">Add</button>
+        <button type="submit">Update</button>
     </form>
 </body>
 </html>
