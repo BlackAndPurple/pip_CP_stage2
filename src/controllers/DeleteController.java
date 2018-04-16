@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.IContactsBean;
 import beans.IParentBean;
 import beans.IPeopleBean;
 
@@ -19,6 +20,10 @@ public class DeleteController extends HttpServlet implements Respondent{
     @EJB
     private IParentBean parentBean;
 
+    @EJB
+    private IContactsBean contactsBean;
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +37,9 @@ public class DeleteController extends HttpServlet implements Respondent{
                 break;
             case "parent":
                 success = parentBean.delete(Long.parseLong(id));
+                break;
+            case "contacts":
+                success = contactsBean.delete(Long.parseLong(id));
                 break;
         }
 

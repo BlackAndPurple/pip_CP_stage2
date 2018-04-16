@@ -46,8 +46,8 @@ public class ParentContacts {
 
     @Override
     public String toString() {
-        return contacts_id + " | " + parent_id + " | " + new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating) + " | " +
-                job + " | " + homeAddress + " | " + jobPhoneNumber + " | " + cellphoneNumber;
+        return "ID: " + contacts_id + " | parent_id: " + parent_id + " | date_of_creating: " + new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating) + " | job: " +
+                job + " | home_address: " + homeAddress + " | job_phone_number: " + jobPhoneNumber + " | cell_phone_number: " + cellphoneNumber;
     }
 
     public long getContacts_id() {

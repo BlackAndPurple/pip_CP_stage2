@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.IContactsBean;
 import beans.IParentBean;
 import beans.IPeopleBean;
 
@@ -22,6 +23,10 @@ public class UpdateController extends HttpServlet implements Respondent{
     @EJB
     private IParentBean parentBean;
 
+    @EJB
+    private IContactsBean contactsBean;
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getRequestURI().substring(req.getContextPath().length());
@@ -32,9 +37,11 @@ public class UpdateController extends HttpServlet implements Respondent{
             //responseBlank(resp, name + " " + middleName + " " + surname + " " + sex + " " + dateOfBirth);
             //peopleBean.add(name, middleName, surname, Boolean.parseBoolean(sex), date);
             boolean success = false;
+            String personId = null;
+            String parentId = null;
             switch (pathArr[2]) {
                 case "person":
-                    String id = req.getParameter("id");
+                    personId = req.getParameter("id");
                     String name = req.getParameter("name");
                     String middleName = req.getParameter("middle_name");
                     String surname = req.getParameter("surname");
@@ -49,12 +56,21 @@ public class UpdateController extends HttpServlet implements Respondent{
                             e.printStackTrace();
                         }
                     }
-                    success = peopleBean.update(Long.parseLong(id), name, middleName, surname, Boolean.parseBoolean(sex), date);
+                    success = peopleBean.update(Long.parseLong(personId), name, middleName, surname, Boolean.parseBoolean(sex), date);
                     break;
                 case "parent":
-                    String personId = req.getParameter("person_id");
-                    String parentId = req.getParameter("parent_id");
+                    personId = req.getParameter("person_id");
+                    parentId = req.getParameter("parent_id");
                     success = parentBean.update(Long.parseLong(parentId), Long.parseLong(personId));
+                    break;
+                case "contacts":
+                    String contactsId = req.getParameter("contacts_id");
+                    parentId = req.getParameter("parent_id");
+                    String address = req.getParameter("address");
+                    String job = req.getParameter("job");
+                    String jobPhoneNumber = req.getParameter("job_phone_number");
+                    String cellPhoneNumber = req.getParameter("cell_phone_number");
+                    success = contactsBean.update(Long.parseLong(contactsId), Long.parseLong(parentId), address, job, jobPhoneNumber, cellPhoneNumber);
                     break;
             }
             if (!success)
