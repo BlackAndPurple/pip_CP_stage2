@@ -9,7 +9,7 @@ import java.util.Collection;
 public class Group {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "IdSeq3")
+    @GeneratedValue(strategy= GenerationType.IDENTITY, generator = "IdSeq3")
     @SequenceGenerator(name="IdSeq3",sequenceName="group_ids", allocationSize=1)
     private long group_id;
 

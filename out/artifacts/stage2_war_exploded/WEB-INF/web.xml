@@ -96,6 +96,17 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>add account</servlet-name>
+        <jsp-file>/add_account.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add account</servlet-name>
+        <url-pattern>/add_account</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>update person</servlet-name>
         <jsp-file>/update_person.jsp</jsp-file>
     </servlet>
@@ -153,6 +164,16 @@
     <ejb-local-ref>
         <ejb-ref-name>kidBean</ejb-ref-name>
         <local>beans.IKidBean</local>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>accountBean</ejb-ref-name>
+        <local>beans.IAccountBean</local>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>groupBean</ejb-ref-name>
+        <local>beans.IGroupBean</local>
     </ejb-local-ref>
 
 </web-app>

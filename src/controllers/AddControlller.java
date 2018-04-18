@@ -1,9 +1,6 @@
 package controllers;
 
-import beans.IContactsBean;
-import beans.IKidBean;
-import beans.IParentBean;
-import beans.IPeopleBean;
+import beans.*;
 import models.People;
 
 import javax.ejb.EJB;
@@ -35,9 +32,13 @@ public class AddControlller extends HttpServlet implements Respondent{
     @EJB
     private IKidBean kidBean;
 
+    @EJB
+    private IAccountBean accountBean;
+
 
 //    @PersistenceUnit
 //    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,14 +55,15 @@ public class AddControlller extends HttpServlet implements Respondent{
                     String sex = req.getParameter("sex");
                     String dateOfBirth = req.getParameter("date_of_birth");
                     Date date = null;
-                    if ((dateOfBirth != null) && !dateOfBirth.equals("")) {
-                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-                        try {
-                            date = format.parse(dateOfBirth);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
+//                    if ((dateOfBirth != null) && !dateOfBirth.equals("")) {
+//                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+//                        try {
+//                            date = format.parse(dateOfBirth);
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+                    date = parseDate(dateOfBirth);
                     peopleBean.add(name, middleName, surname, Boolean.parseBoolean(sex), date);
                     break;
                 case "parent":
@@ -85,10 +87,19 @@ public class AddControlller extends HttpServlet implements Respondent{
                     else
                         kidBean.add(Long.parseLong(id), Long.parseLong(parent1_id), Long.parseLong(parent2_id));
                     break;
+                case "account":
+                    String kidId = req.getParameter("kid_id");
+                    String groupId = req.getParameter("group_id");
+                    String dateOfCreating = req.getParameter("date_of_creating");
+                    String dateOfLeaving = req.getParameter("date_of_leaving");
+                    /*if (!*/accountBean.add(Long.parseLong(kidId), Long.parseLong(groupId), parseDate(dateOfCreating), parseDate(dateOfLeaving));/*)*/
+                        //throw new Exception();
+                    break;
             }
 
         }catch (Exception e){
-            responseBlank(resp, "Unable to add record");
+            //responseBlank(resp, "Unable to add record");
+            e.printStackTrace();
         }
 
         responseBlank(resp, "Record has been added!");

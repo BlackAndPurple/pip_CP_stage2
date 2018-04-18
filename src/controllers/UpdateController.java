@@ -53,14 +53,15 @@ public class UpdateController extends HttpServlet implements Respondent{
                     String sex = req.getParameter("sex");
                     String dateOfBirth = req.getParameter("date_of_birth");
                     Date date = null;
-                    if ((dateOfBirth != null) && !dateOfBirth.equals("")) {
-                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-                        try {
-                            date = format.parse(dateOfBirth);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
+//                    if ((dateOfBirth != null) && !dateOfBirth.equals("")) {
+//                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+//                        try {
+//                            date = format.parse(dateOfBirth);
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+                    date = parseDate(dateOfBirth);
                     success = peopleBean.update(Long.parseLong(personId), name, middleName, surname, Boolean.parseBoolean(sex), date);
                     break;
                 case "parent":

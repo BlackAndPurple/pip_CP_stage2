@@ -46,7 +46,7 @@ public class Kid {
     @OneToMany(targetEntity = MedInfo.class, mappedBy = "kid")
     private Collection<MedInfo> medInfos;
 
-    @OneToMany(targetEntity = KidAccount.class, mappedBy = "kid")
+    @OneToMany(targetEntity = KidAccount.class, mappedBy = "kid", cascade = CascadeType.PERSIST)
     private Collection<KidAccount> kidAccounts;
 
     public Collection<MedInfo> getMedInfos() {
@@ -68,7 +68,7 @@ public class Kid {
 
     @Override
     public String toString() {
-        return "ID: " + kid_id + " | person_id: " + person_id +  " | Parents' IDs: " + parent1_id+", "+ parent2_id;
+        return "kid ID : " + kid_id + " | person_id: " + person_id +  " | Parents' IDs: " + parent1_id+", "+ parent2_id;
     }
 
     public long getKid_id() {

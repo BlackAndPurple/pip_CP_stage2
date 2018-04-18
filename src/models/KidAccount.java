@@ -9,14 +9,32 @@ import java.util.Date;
 public class KidAccount {
 
     @Id
+    @Column(name = "account_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "kid_generator")
+//    @SequenceGenerator(name="kid_generator",sequenceName="s225128.kid_ids", allocationSize=1)
     private long account_id;
 
+    @Column(name = "kid_id")
+    private long kid_id;
+
+    public long getKid_id() {
+        return kid_id;
+    }
+
+    public void setKid_id(long kid_id) {
+        this.kid_id = kid_id;
+    }
+    //
+//    @Column(name = "group_id")
+//    private long groupId;
+
     @ManyToOne
-    @JoinColumn(name="KID_ID", referencedColumnName = "KID_id", insertable = false)
+    @JoinColumn(name="KID_ID",/* referencedColumnName = "KID_id", */insertable = false)
     private Kid kid;
 
     @ManyToOne
-    @JoinColumn(name="GROUP_ID", referencedColumnName = "GROUP_id", insertable = false)
+    @JoinColumn(name="GROUP_ID", referencedColumnName = "GROUP_id", insertable = false)  //one to one would be better
     private Group group;
 
     @Temporal(TemporalType.DATE)
@@ -27,7 +45,8 @@ public class KidAccount {
 
     @Override
     public String toString() {
-        return  account_id + " | " + kid.toString() + " | " + group.getName() + " | " + new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating) + "-"+ date_of_leaving;
+        return "account ID: " + account_id + " | kid ID: " ;//+ kid_id;
+       // return  "account ID: " + account_id + " | kid ID: " + kid.getKid_id() + " | group: " + group.getName() + " | " + new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating) + "-"+ date_of_leaving;
     }
 
     public long getAccount_id() {
@@ -44,6 +63,9 @@ public class KidAccount {
 
     public void setKid(Kid kid) {
         this.kid = kid;
+        //kid.getKidAccounts().add(this);
+        kid_id = kid.getKid_id();
+
     }
 
     public Group getGroup() {
@@ -52,6 +74,7 @@ public class KidAccount {
 
     public void setGroup(Group group) {
         this.group = group;
+        //groupId = group.getGroup_id();
     }
 
     public Date getDate_of_creating() {

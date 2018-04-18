@@ -12,4 +12,5 @@ public interface IKidBean {
     boolean add(long person_id, long parent1_id, long parent2_id);
     boolean delete(long id);
     boolean update(long kid_id, long person_id, long parent1_id, long parent2_id);
+    public Kid get(long id);
 }

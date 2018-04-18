@@ -3,6 +3,10 @@ package controllers;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public interface Respondent {
 
@@ -15,6 +19,19 @@ public interface Respondent {
         out.println(content);
         out.println("</body></html>");
         out.close();
+    }
+
+    default Date parseDate(String stringDate){
+        Date date = null;
+        if ((stringDate != null) && !stringDate.equals("")) {
+            DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            try {
+                date = format.parse(stringDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return date;
     }
 
 }

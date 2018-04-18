@@ -39,5 +39,12 @@
       <li><a href="delete_form/kid">Delete by id</a> </li>
       <li><a href="update_kid">Update</a> </li>
   </ul>
+  <h2>Kid Account</h2>
+  <ul>
+      <li><a href="get_data/account">Get all</a> </li>
+      <li><a href="add_account">Add new</a> </li>
+      <li><a href="delete_form/account">Delete by id</a> </li>
+      <li><a href="update_account">Update</a> </li>
+  </ul>
   </body>
 </html>
