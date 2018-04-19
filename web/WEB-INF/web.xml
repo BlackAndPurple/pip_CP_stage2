@@ -37,7 +37,7 @@
 
     <servlet>
         <servlet-name>add controller</servlet-name>
-        <servlet-class>controllers.AddControlller</servlet-class>
+        <servlet-class>controllers.AddController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -144,6 +144,16 @@
     <servlet-mapping>
         <servlet-name>update contacts</servlet-name>
         <url-pattern>/update_contacts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>update account</servlet-name>
+        <jsp-file>/update_account.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update account</servlet-name>
+        <url-pattern>/update_account</url-pattern>
     </servlet-mapping>
 
     <ejb-local-ref>

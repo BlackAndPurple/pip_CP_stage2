@@ -1,9 +1,6 @@
 package controllers;
 
-import beans.IContactsBean;
-import beans.IKidBean;
-import beans.IParentBean;
-import beans.IPeopleBean;
+import beans.*;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -27,6 +24,9 @@ public class DeleteController extends HttpServlet implements Respondent{
     @EJB
     private IKidBean kidBean;
 
+    @EJB
+    private IAccountBean accountBean;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getRequestURI().substring(req.getContextPath().length());
@@ -45,6 +45,9 @@ public class DeleteController extends HttpServlet implements Respondent{
                 break;
             case "kid":
                 success = kidBean.delete(Long.parseLong(id));
+                break;
+            case "account":
+                success = accountBean.delete(Long.parseLong(id));
                 break;
         }
 

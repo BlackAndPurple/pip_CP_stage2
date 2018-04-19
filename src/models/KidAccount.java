@@ -14,27 +14,27 @@ public class KidAccount {
     //@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "kid_generator")
 //    @SequenceGenerator(name="kid_generator",sequenceName="s225128.kid_ids", allocationSize=1)
     private long account_id;
-
+//
     @Column(name = "kid_id")
     private long kid_id;
 
-    public long getKid_id() {
-        return kid_id;
-    }
-
-    public void setKid_id(long kid_id) {
-        this.kid_id = kid_id;
-    }
+//    public long getKid_id() {
+//        return kid_id;
+//    }
+//
+//    public void setKid_id(long kid_id) {
+//        this.kid_id = kid_id;
+//    }
     //
-//    @Column(name = "group_id")
-//    private long groupId;
+    @Column(name = "group_id")
+    private long group_id;
 
     @ManyToOne
-    @JoinColumn(name="KID_ID",/* referencedColumnName = "KID_id", */insertable = false)
+    @JoinColumn(name="KID_ID",/* referencedColumnName = "KID_id", */insertable = false, updatable = false)
     private Kid kid;
 
     @ManyToOne
-    @JoinColumn(name="GROUP_ID", referencedColumnName = "GROUP_id", insertable = false)  //one to one would be better
+    @JoinColumn(name="GROUP_ID", referencedColumnName = "GROUP_id", insertable = false, updatable = false)  //one to one would be better
     private Group group;
 
     @Temporal(TemporalType.DATE)
@@ -45,8 +45,14 @@ public class KidAccount {
 
     @Override
     public String toString() {
-        return "account ID: " + account_id + " | kid ID: " ;//+ kid_id;
-       // return  "account ID: " + account_id + " | kid ID: " + kid.getKid_id() + " | group: " + group.getName() + " | " + new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating) + "-"+ date_of_leaving;
+        String since = null, until = null;
+        try{
+            since = new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating);
+            until = new SimpleDateFormat("dd-MM-yyyy").format(date_of_leaving);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return "account ID: " + account_id + " | kid ID: " + kid_id +" | group ID: " + group_id + " | " + since + " - " + until;
     }
 
     public long getAccount_id() {
@@ -66,6 +72,7 @@ public class KidAccount {
         //kid.getKidAccounts().add(this);
         kid_id = kid.getKid_id();
 
+
     }
 
     public Group getGroup() {
@@ -74,6 +81,7 @@ public class KidAccount {
 
     public void setGroup(Group group) {
         this.group = group;
+        group_id = group.getGroup_id();
         //groupId = group.getGroup_id();
     }
 

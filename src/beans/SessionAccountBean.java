@@ -70,4 +70,60 @@ public class SessionAccountBean implements IAccountBean{
         }
         return false;
     }
+
+    /**
+     * Allows to get account by id.
+     * @param id  The identifier of account record we are looking for.
+     * @return    Contacts with given id if found.
+     */
+    public KidAccount get(long id){
+        EntityManager em = emf.createEntityManager();
+        try {
+            return (KidAccount) em.createQuery("select account from KidAccount account where account.account_id="+id).getSingleResult();
+        }catch (Exception e){
+            em.close();
+            return null;
+        }
+    }
+
+    /**
+     * Allows to delete kid account with given id.
+     * @param id    record's identifier.
+     * @return      True if delete operation was successful. Otherwise false.
+     */
+    public boolean delete(long id){
+
+        KidAccount account = get(id);
+        if (account != null){
+            EntityManager em = emf.createEntityManager();
+            Query query = em.createQuery("delete from KidAccount account where account.account_id="+id);
+            query.executeUpdate();
+            em.close();
+            return true;
+        }else return false;
+    }
+
+    /**
+     * Allows to update kid Account with given id.
+     * @param accountId       Record's identifier.
+     * @param kidId           New kid's id.
+     * @param groupId         New kid's group id.
+     * @param dateOfCreating  New start of the period the kid belongs to the group.
+     * @param dateOfLeaving   New end of the period the kid belongs to the group.
+     * @return                True if add operation was successful. Otherwise false.
+     */
+    public boolean update(long accountId, long kidId, long groupId, Date dateOfCreating, Date dateOfLeaving){
+        KidAccount account = get(accountId);
+        Kid kid = kidBean.get(kidId);
+        Group group = groupBean.get(groupId);
+        if (account != null && kid != null && group != null) {
+            account.setKid(kid);
+            account.setGroup(group);
+            account.setDate_of_creating(dateOfCreating);
+            account.setDate_of_leaving(dateOfLeaving);
+            return true;
+        }
+        return false;
+
+    }
 }

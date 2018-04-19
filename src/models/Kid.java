@@ -46,20 +46,20 @@ public class Kid {
     @OneToMany(targetEntity = MedInfo.class, mappedBy = "kid")
     private Collection<MedInfo> medInfos;
 
-    @OneToMany(targetEntity = KidAccount.class, mappedBy = "kid", cascade = CascadeType.PERSIST)
+    @OneToMany(targetEntity = KidAccount.class, mappedBy = "kid"/*, cascade = CascadeType.PERSIST*/)
     private Collection<KidAccount> kidAccounts;
 
     public Collection<MedInfo> getMedInfos() {
         return medInfos;
     }
 
-    public Collection<KidAccount> getKidAccounts() {
-        return kidAccounts;
-    }
+//    public Collection<KidAccount> getKidAccounts() {
+//        return kidAccounts;
+//    }
 
-    public void setKidAccounts(Collection<KidAccount> kidAccounts) {
-        this.kidAccounts = kidAccounts;
-    }
+//    public void setKidAccounts(Collection<KidAccount> kidAccounts) {
+//        this.kidAccounts = kidAccounts;
+//    }
 
     public void setMedInfos(Collection<MedInfo> medInfos) {
 

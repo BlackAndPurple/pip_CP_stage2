@@ -1,9 +1,6 @@
 package controllers;
 
-import beans.IContactsBean;
-import beans.IKidBean;
-import beans.IParentBean;
-import beans.IPeopleBean;
+import beans.*;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -30,6 +27,9 @@ public class UpdateController extends HttpServlet implements Respondent{
     @EJB
     private IKidBean kidBean;
 
+    @EJB
+    private IAccountBean accountBean;
+
 
 
     @Override
@@ -37,13 +37,11 @@ public class UpdateController extends HttpServlet implements Respondent{
         String path = req.getRequestURI().substring(req.getContextPath().length());
         String[] pathArr = path.split("/");
         try {
-
-
-            //responseBlank(resp, name + " " + middleName + " " + surname + " " + sex + " " + dateOfBirth);
-            //peopleBean.add(name, middleName, surname, Boolean.parseBoolean(sex), date);
             boolean success = false;
             String personId = null;
             String parentId = null;
+            String kidId = null;
+            String groupId = null;
             switch (pathArr[2]) {
                 case "person":
                     personId = req.getParameter("id");
@@ -79,11 +77,19 @@ public class UpdateController extends HttpServlet implements Respondent{
                     success = contactsBean.update(Long.parseLong(contactsId), Long.parseLong(parentId), address, job, jobPhoneNumber, cellPhoneNumber);
                     break;
                 case "kid":
-                    String kidId = req.getParameter("kid_id");
+                    kidId = req.getParameter("kid_id");
                     personId = req.getParameter("person_id");
                     String parent1Id = req.getParameter("parent1_id");
                     String parent2Id = req.getParameter("parent2_id");
                     success = kidBean.update(Long.parseLong(kidId), Long.parseLong(personId), Long.parseLong(parent1Id), Long.parseLong(parent2Id));
+                    break;
+                case "account":
+                    String accountId = req.getParameter("account_id");
+                    kidId = req.getParameter("kid_id");
+                    groupId = req.getParameter("group_id");
+                    Date since = parseDate(req.getParameter("date_of_creating"));
+                    Date until = parseDate(req.getParameter("date_of_leaving"));
+                    success = accountBean.update(Long.parseLong(accountId), Long.parseLong(kidId), Long.parseLong(groupId), since, until);
                     break;
             }
             if (!success)

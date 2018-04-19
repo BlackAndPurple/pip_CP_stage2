@@ -13,7 +13,7 @@
         <class>models.Group</class>
         <class>models.Staff</class>
         <class>models.StaffGroup</class>
-        <class>controllers.AddControlller</class>
+        <class>controllers.AddController</class>
         <class>beans.SessionPeopleBean</class>
         <!--class>controllers.Controller</class-->
         <properties>

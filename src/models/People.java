@@ -41,7 +41,7 @@ public class People implements Serializable{
         try{
             date = new SimpleDateFormat("dd-MM-yyyy").format(date_of_birth);
         }catch(NullPointerException e){
-
+            e.printStackTrace();
         }
         return person_id+" | "+name+" | "+middleName+" | "+surname+" | "+sex+" | "+ date;
     }

@@ -18,7 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AddControlller extends HttpServlet implements Respondent{
+public class AddController extends HttpServlet implements Respondent{
 
     @EJB
     private IPeopleBean peopleBean;
@@ -34,10 +34,6 @@ public class AddControlller extends HttpServlet implements Respondent{
 
     @EJB
     private IAccountBean accountBean;
-
-
-//    @PersistenceUnit
-//    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
 
 
     @Override
@@ -92,14 +88,13 @@ public class AddControlller extends HttpServlet implements Respondent{
                     String groupId = req.getParameter("group_id");
                     String dateOfCreating = req.getParameter("date_of_creating");
                     String dateOfLeaving = req.getParameter("date_of_leaving");
-                    /*if (!*/accountBean.add(Long.parseLong(kidId), Long.parseLong(groupId), parseDate(dateOfCreating), parseDate(dateOfLeaving));/*)*/
-                        //throw new Exception();
+                    if (!accountBean.add(Long.parseLong(kidId), Long.parseLong(groupId), parseDate(dateOfCreating), parseDate(dateOfLeaving)))
+                        throw new Exception();
                     break;
             }
 
         }catch (Exception e){
-            //responseBlank(resp, "Unable to add record");
-            e.printStackTrace();
+            responseBlank(resp, "Unable to add record");
         }
 
         responseBlank(resp, "Record has been added!");
