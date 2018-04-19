@@ -137,6 +137,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>update group</servlet-name>
+        <jsp-file>/update_group.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update group</servlet-name>
+        <url-pattern>/update_group</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>update parent</servlet-name>
         <jsp-file>/update_parent.jsp</jsp-file>
     </servlet>

@@ -11,4 +11,6 @@ public interface IGroupBean {
     Group get(long id);
     List<Group> getAll();
     boolean add(String groupName, String groupType);
+    boolean delete(long id);
+    boolean update(long groupId, String groupName, String groupType);
 }

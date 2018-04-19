@@ -6,6 +6,9 @@ import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Bean implementing CRUD api for {@link models.Group model}.
+ */
 @Stateless(name = "SessionGroupEJB")
 public class SessionGroupBean implements IGroupBean{
     public SessionGroupBean() {
@@ -42,7 +45,7 @@ public class SessionGroupBean implements IGroupBean{
     }
 
     /**
-     * Allows to add new group account to database.
+     * Allows to add new group to database.
      * @param groupName       Name of the group.
      * @param groupType       Type of the group(age restrictions).
      * @return                True if add operation was successful. Otherwise false.
@@ -61,4 +64,40 @@ public class SessionGroupBean implements IGroupBean{
             return false;
         }
     }
+
+    /**
+     * Allows to delete group with given id.
+     * @param id    record's identifier.
+     * @return      True if delete operation was successful. Otherwise false.
+     */
+    public boolean delete(long id){
+
+        Group group = get(id);
+        if (group != null){
+            EntityManager em = emf.createEntityManager();
+            Query query = em.createQuery("delete from Group group where group.group_id="+id);
+            query.executeUpdate();
+            em.close();
+            return true;
+        }else return false;
+    }
+
+    /**
+     * Allows to update Group with given id.
+     * @param groupId         Kid's group id.
+     * @param groupName       Name of the group.
+     * @param groupType       Type of the group(age restrictions).
+     * @return                True if add operation was successful. Otherwise false.
+     */
+    public boolean update(long groupId, String groupName, String groupType){
+        Group group = get(groupId);
+        if (group != null ) {
+           group.setName(groupName);
+           group.setTypeOfGroup(groupType);
+            return true;
+        }
+        return false;
+
+    }
+
 }

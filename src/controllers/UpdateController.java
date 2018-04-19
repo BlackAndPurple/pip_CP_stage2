@@ -30,6 +30,9 @@ public class UpdateController extends HttpServlet implements Respondent{
     @EJB
     private IAccountBean accountBean;
 
+    @EJB
+    private IGroupBean groupBean;
+
 
 
     @Override
@@ -90,6 +93,12 @@ public class UpdateController extends HttpServlet implements Respondent{
                     Date since = parseDate(req.getParameter("date_of_creating"));
                     Date until = parseDate(req.getParameter("date_of_leaving"));
                     success = accountBean.update(Long.parseLong(accountId), Long.parseLong(kidId), Long.parseLong(groupId), since, until);
+                    break;
+                case "group":
+                    groupId = req.getParameter("group_id");
+                    String groupName = req.getParameter("group_name");
+                    String groupType = req.getParameter("group_type");
+                    success = groupBean.update(Long.parseLong(groupId), groupName, groupType);
                     break;
             }
             if (!success)

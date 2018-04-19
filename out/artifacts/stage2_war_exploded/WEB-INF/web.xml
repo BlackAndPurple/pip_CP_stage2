@@ -105,6 +105,16 @@
         <url-pattern>/add_account</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>add group</servlet-name>
+        <jsp-file>/add_group.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add group</servlet-name>
+        <url-pattern>/add_group</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>update person</servlet-name>
@@ -124,6 +134,16 @@
     <servlet-mapping>
         <servlet-name>update kid</servlet-name>
         <url-pattern>/update_kid</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>update group</servlet-name>
+        <jsp-file>/update_group.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update group</servlet-name>
+        <url-pattern>/update_group</url-pattern>
     </servlet-mapping>
 
     <servlet>
