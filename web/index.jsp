@@ -46,5 +46,12 @@
       <li><a href="delete_form/account">Delete by id</a> </li>
       <li><a href="update_account">Update</a> </li>
   </ul>
+  <h2>Group</h2>
+  <ul>
+      <li><a href="get_data/group">Get all</a> </li>
+      <li><a href="add_group">Add new</a> </li>
+      <li><a href="delete_form/group">Delete by id</a> </li>
+      <li><a href="update_group">Update</a> </li>
+  </ul>
   </body>
 </html>

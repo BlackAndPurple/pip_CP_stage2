@@ -58,7 +58,6 @@ public class SessionAccountBean implements IAccountBean{
             EntityManager em = emf.createEntityManager();
             KidAccount account = new KidAccount();
             account.setKid(kid);
-            //kid.getKidAccounts().add()
             account.setGroup(group);
             if (dateOfCreating != null)
                 account.setDate_of_creating(dateOfCreating);

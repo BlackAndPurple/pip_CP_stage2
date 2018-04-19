@@ -34,7 +34,7 @@ public class KidAccount {
     private Kid kid;
 
     @ManyToOne
-    @JoinColumn(name="GROUP_ID", referencedColumnName = "GROUP_id", insertable = false, updatable = false)  //one to one would be better
+    @JoinColumn(name="GROUP_ID",/* referencedColumnName = "GROUP_id",*/ insertable = false, updatable = false)  //one to one would be better
     private Group group;
 
     @Temporal(TemporalType.DATE)

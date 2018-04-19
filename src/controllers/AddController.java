@@ -35,6 +35,9 @@ public class AddController extends HttpServlet implements Respondent{
     @EJB
     private IAccountBean accountBean;
 
+    @EJB
+    private IGroupBean groupBean;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -89,6 +92,12 @@ public class AddController extends HttpServlet implements Respondent{
                     String dateOfCreating = req.getParameter("date_of_creating");
                     String dateOfLeaving = req.getParameter("date_of_leaving");
                     if (!accountBean.add(Long.parseLong(kidId), Long.parseLong(groupId), parseDate(dateOfCreating), parseDate(dateOfLeaving)))
+                        throw new Exception();
+                    break;
+                case "group":
+                    String groupName = req.getParameter("group_name");
+                    String groupType = req.getParameter("group_type");
+                    if (!groupBean.add(groupName, groupType))
                         throw new Exception();
                     break;
             }

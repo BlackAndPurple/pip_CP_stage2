@@ -32,6 +32,9 @@ public class GetController extends HttpServlet implements Respondent{
     @EJB
     private IAccountBean accountBean;
 
+    @EJB
+    private IGroupBean groupBean;
+
 
     private String makeContentFromList(List ResultList){
         String retString = "";
@@ -66,6 +69,9 @@ public class GetController extends HttpServlet implements Respondent{
                 break;
             case "/account":
                 ResultList = accountBean.getAll();
+                break;
+            case "/group":
+                ResultList = groupBean.getAll();
                 break;
         }
 

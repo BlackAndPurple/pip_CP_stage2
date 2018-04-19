@@ -9,8 +9,8 @@ import java.util.Collection;
 public class Group {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY, generator = "IdSeq3")
-    @SequenceGenerator(name="IdSeq3",sequenceName="group_ids", allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.IDENTITY/*, generator = "IdSeq3"*/)
+    //@SequenceGenerator(name="IdSeq3",sequenceName="group_ids", allocationSize=1)
     private long group_id;
 
 
@@ -19,17 +19,17 @@ public class Group {
 
 
     @Column(name="TYPE_OF_GROUP", columnDefinition = "VARCHAR(20)")
-    private String typeOfGroup;
+    private String typeOfGroup = null;
 
-    @OneToMany(targetEntity = KidAccount.class, mappedBy = "group")
-    private Collection<KidAccount> kidAccounts;
+//    @OneToMany(targetEntity = KidAccount.class, mappedBy = "group")
+//    private Collection<KidAccount> kidAccounts;
 
     @OneToMany(targetEntity = StaffGroup.class, mappedBy = "group")
     private Collection<StaffGroup> staffGroup;
 
     @Override
     public String toString() {
-        return group_id + " | " + name + " | " + typeOfGroup;
+        return "group ID: " + group_id + " | name: " + name + " | type: " + typeOfGroup;
     }
 
     public long getGroup_id() {
@@ -56,13 +56,13 @@ public class Group {
         this.typeOfGroup = typeOfGroup;
     }
 
-    public Collection<KidAccount> getKidAccounts() {
-        return kidAccounts;
-    }
-
-    public void setKidAccounts(Collection<KidAccount> kidAccounts) {
-        this.kidAccounts = kidAccounts;
-    }
+//    public Collection<KidAccount> getKidAccounts() {
+//        return kidAccounts;
+//    }
+//
+//    public void setKidAccounts(Collection<KidAccount> kidAccounts) {
+//        this.kidAccounts = kidAccounts;
+//    }
 
     public Collection<StaffGroup> getStaffGroup() {
         return staffGroup;
