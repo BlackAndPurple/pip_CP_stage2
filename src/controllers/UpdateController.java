@@ -36,6 +36,9 @@ public class UpdateController extends HttpServlet implements Respondent{
     @EJB
     private IMedBean medBean;
 
+    @EJB
+    private IStaffBean staffBean;
+
 
 
     @Override
@@ -114,6 +117,13 @@ public class UpdateController extends HttpServlet implements Respondent{
                     String inoculations = req.getParameter("inoculations");
                     String diseases = req.getParameter("diseases");
                     success = medBean.update(Long.parseLong(medId), Long.parseLong(kidId), date, height, weight, inoculations, diseases);
+                    break;
+                case "staff":
+                    String staff_id = req.getParameter("staff_id");
+                    personId = req.getParameter("person_id");
+                    String function = req.getParameter("function");
+                    String experience = req.getParameter("experience");
+                    success = staffBean.update(Long.parseLong(staff_id), Long.parseLong(personId), function, experience);
                     break;
             }
             if (!success)

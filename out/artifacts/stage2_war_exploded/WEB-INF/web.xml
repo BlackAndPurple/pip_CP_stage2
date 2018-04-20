@@ -206,6 +206,16 @@
         <url-pattern>/update_med</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>update staff</servlet-name>
+        <jsp-file>/update_staff.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update staff</servlet-name>
+        <url-pattern>/update_staff</url-pattern>
+    </servlet-mapping>
+
     <ejb-local-ref>
         <ejb-ref-name>peopleBean</ejb-ref-name>
         <local>beans.IPeopleBean</local>

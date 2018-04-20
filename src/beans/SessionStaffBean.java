@@ -36,7 +36,7 @@ public class SessionStaffBean implements IStaffBean{
 
     /**
      * Allows to add new staff to database.
-     * @param personId          Kid's id.
+     * @param personId          Id of the person we want to mark as staff.
      * @param function          Function the staff 	accomplishes.
      * @param experience        Working experience;
      * @return                  True if add operation was successful. Otherwise false.
@@ -86,5 +86,26 @@ public class SessionStaffBean implements IStaffBean{
             em.close();
             return null;
         }
+    }
+
+    /**
+     * Allows to update staff with given id.
+     * @param staffId           Record's id.
+     * @param personId          New id of the person we want to mark as staff.
+     * @param function          New function the staff 	accomplishes.
+     * @param experience        New working experience;
+     * @return                  True if add operation was successful. Otherwise false.
+     */
+    public boolean update(long staffId, long personId, String function, String experience){
+        Staff staff = get(staffId);
+        People person = peopleBean.get(personId);
+        if (staff != null && person != null) {
+           staff.setPerson(person);
+           staff.setFunction(function);
+           staff.setExperience(experience);
+           return true;
+        }
+        return false;
+
     }
 }

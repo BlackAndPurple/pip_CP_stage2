@@ -11,4 +11,5 @@ public interface IStaffBean {
     boolean add(long personId, String function, String experience);
     boolean delete(long id);
     Staff get(long id);
+    boolean update(long staffId, long personId, String function, String experience);
 }
