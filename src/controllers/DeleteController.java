@@ -36,6 +36,9 @@ public class DeleteController extends HttpServlet implements Respondent{
     @EJB
     private IStaffBean staffBean;
 
+    @EJB
+    private IStaffGroupBean staffGroupBean;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getRequestURI().substring(req.getContextPath().length());
@@ -66,6 +69,9 @@ public class DeleteController extends HttpServlet implements Respondent{
                 break;
             case "staff":
                 success = staffBean.delete(Long.parseLong(id));
+                break;
+            case "sg":
+                success = staffGroupBean.delete(Long.parseLong(id));
                 break;
         }
 

@@ -135,6 +135,16 @@
         <url-pattern>/add_staff</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>add staff-group</servlet-name>
+        <jsp-file>/add_sg.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add staff-group</servlet-name>
+        <url-pattern>/add_sg</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>update person</servlet-name>
@@ -216,6 +226,16 @@
         <url-pattern>/update_staff</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>update staff-group</servlet-name>
+        <jsp-file>/update_sg.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update staff-group</servlet-name>
+        <url-pattern>/update_sg</url-pattern>
+    </servlet-mapping>
+
     <ejb-local-ref>
         <ejb-ref-name>peopleBean</ejb-ref-name>
         <local>beans.IPeopleBean</local>
@@ -254,5 +274,10 @@
     <ejb-local-ref>
         <ejb-ref-name>staffBean</ejb-ref-name>
         <local>beans.IStaffBean</local>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>staffGroupBean</ejb-ref-name>
+        <local>beans.IStaffGroupBean</local>
     </ejb-local-ref>
 </web-app>

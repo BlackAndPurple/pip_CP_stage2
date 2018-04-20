@@ -39,6 +39,9 @@ public class UpdateController extends HttpServlet implements Respondent{
     @EJB
     private IStaffBean staffBean;
 
+    @EJB
+    private IStaffGroupBean staffGroupBean;
+
 
 
     @Override
@@ -51,6 +54,7 @@ public class UpdateController extends HttpServlet implements Respondent{
             String parentId = null;
             String kidId = null;
             String groupId = null;
+            String staff_id;
             switch (pathArr[2]) {
                 case "person":
                     personId = req.getParameter("id");
@@ -60,6 +64,7 @@ public class UpdateController extends HttpServlet implements Respondent{
                     String sex = req.getParameter("sex");
                     String dateOfBirth = req.getParameter("date_of_birth");
                     Date date = null;
+                    Date since = null, until = null;
 //                    if ((dateOfBirth != null) && !dateOfBirth.equals("")) {
 //                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 //                        try {
@@ -96,8 +101,8 @@ public class UpdateController extends HttpServlet implements Respondent{
                     String accountId = req.getParameter("account_id");
                     kidId = req.getParameter("kid_id");
                     groupId = req.getParameter("group_id");
-                    Date since = parseDate(req.getParameter("date_of_creating"));
-                    Date until = parseDate(req.getParameter("date_of_leaving"));
+                    since = parseDate(req.getParameter("date_of_creating"));
+                    until = parseDate(req.getParameter("date_of_leaving"));
                     success = accountBean.update(Long.parseLong(accountId), Long.parseLong(kidId), Long.parseLong(groupId), since, until);
                     break;
                 case "group":
@@ -119,11 +124,19 @@ public class UpdateController extends HttpServlet implements Respondent{
                     success = medBean.update(Long.parseLong(medId), Long.parseLong(kidId), date, height, weight, inoculations, diseases);
                     break;
                 case "staff":
-                    String staff_id = req.getParameter("staff_id");
+                    staff_id = req.getParameter("staff_id");
                     personId = req.getParameter("person_id");
                     String function = req.getParameter("function");
                     String experience = req.getParameter("experience");
                     success = staffBean.update(Long.parseLong(staff_id), Long.parseLong(personId), function, experience);
+                    break;
+                case "sg":
+                    String id = req.getParameter("id");
+                    staff_id = req.getParameter("staff_id");
+                    groupId = req.getParameter("group_id");
+                    since = parseDate(req.getParameter("since"));
+                    until = parseDate(req.getParameter("until"));
+                    success = staffGroupBean.update(Long.parseLong(id), Long.parseLong(staff_id),Long.parseLong(groupId), since, until );
                     break;
             }
             if (!success)

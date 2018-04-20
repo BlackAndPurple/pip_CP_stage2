@@ -67,5 +67,12 @@
       <li><a href="delete_form/staff">Delete by id</a> </li>
       <li><a href="update_staff">Update</a> </li>
   </ul>
+  <h2>Staff-group</h2>
+  <ul>
+      <li><a href="get_data/sg">Get all</a> </li>
+      <li><a href="add_sg">Add new</a> </li>
+      <li><a href="delete_form/sg">Delete by id</a> </li>
+      <li><a href="update_sg">Update</a> </li>
+  </ul>
   </body>
 </html>

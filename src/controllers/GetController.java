@@ -41,6 +41,9 @@ public class GetController extends HttpServlet implements Respondent{
     @EJB
     private IStaffBean staffBean;
 
+    @EJB
+    private IStaffGroupBean staffGroupBean;
+
     private String makeContentFromList(List ResultList){
         String retString = "";
         for (Object o : ResultList)
@@ -83,6 +86,9 @@ public class GetController extends HttpServlet implements Respondent{
                 break;
             case "/staff":
                 ResultList = staffBean.getAll();
+                break;
+            case "/sg":
+                ResultList = staffGroupBean.getAll();
                 break;
         }
 

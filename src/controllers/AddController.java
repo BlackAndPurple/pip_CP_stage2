@@ -44,6 +44,9 @@ public class AddController extends HttpServlet implements Respondent{
     @EJB
     private IStaffBean staffBean;
 
+    @EJB
+    private IStaffGroupBean staffGroupBean;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -121,6 +124,14 @@ public class AddController extends HttpServlet implements Respondent{
                     String function = req.getParameter("function");
                     String experience = req.getParameter("experience");
                     if (!staffBean.add(Long.parseLong(id), function, experience))
+                        throw new Exception();
+                    break;
+                case "sg":
+                    id = req.getParameter("staff_id");
+                    groupId = req.getParameter("group_id");
+                    Date since = parseDate(req.getParameter("since"));
+                    Date until = parseDate(req.getParameter("until"));
+                    if (!staffGroupBean.add(Long.parseLong(id), Long.parseLong(groupId), since, until))
                         throw new Exception();
                     break;
             }

@@ -10,8 +10,8 @@ import java.util.Date;
 public class StaffGroup {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "IdSeq6")
-    @SequenceGenerator(name="IdSeq6",sequenceName="staff_group_ids", allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.IDENTITY/*, generator = "IdSeq6"*/)
+    //@SequenceGenerator(name="IdSeq6",sequenceName="staff_group_ids", allocationSize=1)
     private long id;
 
     @Temporal(TemporalType.DATE)
@@ -21,17 +21,30 @@ public class StaffGroup {
     private Date date_of_end;
 
     @ManyToOne
-    @JoinColumn(name="STAFF_ID", referencedColumnName = "STAFF_id", insertable = false)
+    @JoinColumn(name="STAFF_ID", referencedColumnName = "STAFF_id", insertable = false, updatable = false)
     private Staff staff;
 
     @ManyToOne
-    @JoinColumn(name="GROUP_ID", referencedColumnName = "GROUP_ID", insertable = false)
+    @JoinColumn(name="GROUP_ID", referencedColumnName = "GROUP_ID", insertable = false, updatable = false)
     private Group group;
+
+    @Column(name = "staff_id")
+    private Long staff_id;
+
+    @Column(name = "group_id")
+    private Long group_id;
 
     @Override
     public String toString() {
-        return id + " | " + staff.getStaff_id() + " | " + group.getName() + " | " +
-                date_of_beginning + " - " + date_of_end;
+        String since = null, until = null;
+        try{
+            since = new SimpleDateFormat("dd-MM-yyyy").format(date_of_beginning);
+            until = new SimpleDateFormat("dd-MM-yyyy").format(date_of_end);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return "ID: " + id + " | staff ID: " + staff_id + " | group ID: " + group_id + " | " +
+                since + " - " + until;
     }
 
     public long getId() {
@@ -64,6 +77,7 @@ public class StaffGroup {
 
     public void setStaff(Staff staff) {
         this.staff = staff;
+        staff_id = staff.getStaff_id();
     }
 
     public Group getGroup() {
@@ -72,5 +86,6 @@ public class StaffGroup {
 
     public void setGroup(Group group) {
         this.group = group;
+        group_id = group.getGroup_id();
     }
 }
