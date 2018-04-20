@@ -41,6 +41,9 @@ public class AddController extends HttpServlet implements Respondent{
     @EJB
     private IMedBean medBean;
 
+    @EJB
+    private IStaffBean staffBean;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -111,6 +114,13 @@ public class AddController extends HttpServlet implements Respondent{
                     String inoculations = req.getParameter("inoculations");
                     String diseases = req.getParameter("diseases");
                     if (!medBean.add(Long.parseLong(kidId), date, Integer.parseInt(height), Double.parseDouble(weight), inoculations, diseases))
+                        throw new Exception();
+                    break;
+                case "staff":
+                    id = req.getParameter("person_id");
+                    String function = req.getParameter("function");
+                    String experience = req.getParameter("experience");
+                    if (!staffBean.add(Long.parseLong(id), function, experience))
                         throw new Exception();
                     break;
             }

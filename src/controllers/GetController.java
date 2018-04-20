@@ -38,6 +38,8 @@ public class GetController extends HttpServlet implements Respondent{
     @EJB
     private IMedBean medBean;
 
+    @EJB
+    private IStaffBean staffBean;
 
     private String makeContentFromList(List ResultList){
         String retString = "";
@@ -78,6 +80,9 @@ public class GetController extends HttpServlet implements Respondent{
                 break;
             case "/med":
                 ResultList = medBean.getAll();
+                break;
+            case "/staff":
+                ResultList = staffBean.getAll();
                 break;
         }
 

@@ -125,6 +125,16 @@
         <url-pattern>/add_med</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>add staff</servlet-name>
+        <jsp-file>/add_staff.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add staff</servlet-name>
+        <url-pattern>/add_staff</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>update person</servlet-name>
@@ -231,4 +241,8 @@
         <local>beans.IMedBean</local>
     </ejb-local-ref>
 
+    <ejb-local-ref>
+        <ejb-ref-name>staffBean</ejb-ref-name>
+        <local>beans.IStaffBean</local>
+    </ejb-local-ref>
 </web-app>

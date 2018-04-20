@@ -60,5 +60,12 @@
       <li><a href="delete_form/med">Delete by id</a> </li>
       <li><a href="update_med">Update</a> </li>
   </ul>
+  <h2>Staff</h2>
+  <ul>
+      <li><a href="get_data/staff">Get all</a> </li>
+      <li><a href="add_staff">Add new</a> </li>
+      <li><a href="delete_form/staff">Delete by id</a> </li>
+      <li><a href="update_staff">Update</a> </li>
+  </ul>
   </body>
 </html>

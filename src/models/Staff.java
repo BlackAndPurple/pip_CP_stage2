@@ -9,13 +9,16 @@ import java.util.Collection;
 public class Staff {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "IdSeq4")
-    @SequenceGenerator(name="IdSeq4",sequenceName="staff_ids", allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.IDENTITY/*, generator = "IdSeq4"*/)
+    /*@SequenceGenerator(name="IdSeq4",sequenceName="staff_ids", allocationSize=1)*/
     private long staff_id;
 
     @ManyToOne
-    @JoinColumn(name="PERSON_ID", referencedColumnName = "PERSON_id", insertable = false)
+    @JoinColumn(name="PERSON_ID", referencedColumnName = "PERSON_id", insertable = false, updatable = false)
     private People person;
+
+    @Column(name = "person_id")
+    private Long person_id;
 
     @Column(name="FUNCTION", columnDefinition = "VARCHAR(30)")
     private String function;
@@ -27,7 +30,7 @@ public class Staff {
 
     @Override
     public String toString() {
-        return staff_id +  " | " + person.getPerson_id() + " | " + function + " | " + experience;
+        return staff_id +  " | " + person_id + " | " + function + " | " + experience;
     }
 
     public long getStaff_id() {
@@ -44,6 +47,7 @@ public class Staff {
 
     public void setPerson(People person) {
         this.person = person;
+        person_id = person.getPerson_id();
     }
 
     public String getFunction() {
