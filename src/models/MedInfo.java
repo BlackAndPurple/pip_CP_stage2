@@ -1,5 +1,7 @@
 package models;
 
+import com.sun.istack.internal.Nullable;
+
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,26 +11,31 @@ import java.util.Date;
 public class MedInfo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long med_id;
 
     @ManyToOne
-    @JoinColumn(name="KID_ID", referencedColumnName = "KID_id", insertable = false)
+    @JoinColumn(name="KID_ID",/*, referencedColumnName = "KID_id", */insertable = false, updatable = false)
     private Kid kid;
+
+    @Column(name = "kid_id")
+    private Long kid_id;
 
     @Temporal(TemporalType.DATE)
     private Date date_of_creating;
 
-    private int height;
-    private float weight;
+    private Integer height;
+    private Double weight;
+
     private String inoculations;
 
-    @Column(name = "CURRENT_DESEASES")
-    private String currentDeseases;
+    @Column(name = "CURRENT_DISEASES")
+    private String currentDiseases;
 
     @Override
     public String toString() {
-        return med_id + " | " + getKid().getKid_id()+" | " + new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating)+
-                " | " + height + " | " + weight + " | " + inoculations+ " | " + currentDeseases;
+        return "ID: " + med_id + " | kid id:" + kid_id +" | date of creating: " + new SimpleDateFormat("dd-MM-yyyy").format(date_of_creating)+
+                " | height: " + height + " | weight: " + weight + " | inoculations: " + inoculations+ " | current diseases: " + currentDiseases;
     }
 
     public long getMed_id() {
@@ -45,6 +52,7 @@ public class MedInfo {
 
     public void setKid(Kid kid) {
         this.kid = kid;
+        kid_id = kid.getKid_id();
     }
 
     public Date getDate_of_creating() {
@@ -55,19 +63,19 @@ public class MedInfo {
         this.date_of_creating = date_of_creating;
     }
 
-    public int getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 
-    public float getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
@@ -80,10 +88,10 @@ public class MedInfo {
     }
 
     public String getCurrentDeseases() {
-        return currentDeseases;
+        return currentDiseases;
     }
 
     public void setCurrentDeseases(String currentDeseases) {
-        this.currentDeseases = currentDeseases;
+        this.currentDiseases = currentDeseases;
     }
 }

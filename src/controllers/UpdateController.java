@@ -33,6 +33,9 @@ public class UpdateController extends HttpServlet implements Respondent{
     @EJB
     private IGroupBean groupBean;
 
+    @EJB
+    private IMedBean medBean;
+
 
 
     @Override
@@ -100,10 +103,23 @@ public class UpdateController extends HttpServlet implements Respondent{
                     String groupType = req.getParameter("group_type");
                     success = groupBean.update(Long.parseLong(groupId), groupName, groupType);
                     break;
+                case "med":
+                    String medId = req.getParameter("med_id");
+                    kidId = req.getParameter("kid_id");
+                    date = parseDate(req.getParameter("date_of_creating"));
+                    Integer height = req.getParameter("height").equals("") ? null : Integer.parseInt(req.getParameter("height"));
+                    Double weight = req.getParameter("height").equals("") ? null : Double.parseDouble(req.getParameter("height"));
+                   // String height = req.getParameter("height");
+                    //String weight = req.getParameter("weight");
+                    String inoculations = req.getParameter("inoculations");
+                    String diseases = req.getParameter("diseases");
+                    success = medBean.update(Long.parseLong(medId), Long.parseLong(kidId), date, height, weight, inoculations, diseases);
+                    break;
             }
             if (!success)
                 throw new Exception();
         }catch (Exception e){
+            e.printStackTrace();
             responseBlank(resp, "Unable to update record");
         }
 

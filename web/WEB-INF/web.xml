@@ -115,6 +115,16 @@
         <url-pattern>/add_group</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>add med</servlet-name>
+        <jsp-file>/add_med.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add med</servlet-name>
+        <url-pattern>/add_med</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>update person</servlet-name>
@@ -176,6 +186,16 @@
         <url-pattern>/update_account</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>update med</servlet-name>
+        <jsp-file>/update_med.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update med</servlet-name>
+        <url-pattern>/update_med</url-pattern>
+    </servlet-mapping>
+
     <ejb-local-ref>
         <ejb-ref-name>peopleBean</ejb-ref-name>
         <local>beans.IPeopleBean</local>
@@ -204,6 +224,11 @@
     <ejb-local-ref>
         <ejb-ref-name>groupBean</ejb-ref-name>
         <local>beans.IGroupBean</local>
+    </ejb-local-ref>
+
+    <ejb-local-ref>
+        <ejb-ref-name>medBean</ejb-ref-name>
+        <local>beans.IMedBean</local>
     </ejb-local-ref>
 
 </web-app>

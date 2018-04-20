@@ -53,5 +53,12 @@
       <li><a href="delete_form/group">Delete by id</a> </li>
       <li><a href="update_group">Update</a> </li>
   </ul>
+  <h2>Medinfo</h2>
+  <ul>
+      <li><a href="get_data/med">Get all</a> </li>
+      <li><a href="add_med">Add new</a> </li>
+      <li><a href="delete_form/med">Delete by id</a> </li>
+      <li><a href="update_med">Update</a> </li>
+  </ul>
   </body>
 </html>

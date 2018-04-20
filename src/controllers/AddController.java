@@ -38,6 +38,9 @@ public class AddController extends HttpServlet implements Respondent{
     @EJB
     private IGroupBean groupBean;
 
+    @EJB
+    private IMedBean medBean;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -100,9 +103,20 @@ public class AddController extends HttpServlet implements Respondent{
                     if (!groupBean.add(groupName, groupType))
                         throw new Exception();
                     break;
+                case "med":
+                    kidId = req.getParameter("kid_id");
+                    date = parseDate(req.getParameter("date_of_creating"));
+                    String height = req.getParameter("height");
+                    String weight = req.getParameter("weight");
+                    String inoculations = req.getParameter("inoculations");
+                    String diseases = req.getParameter("diseases");
+                    if (!medBean.add(Long.parseLong(kidId), date, Integer.parseInt(height), Double.parseDouble(weight), inoculations, diseases))
+                        throw new Exception();
+                    break;
             }
 
         }catch (Exception e){
+            e.printStackTrace();
             responseBlank(resp, "Unable to add record");
         }
 
